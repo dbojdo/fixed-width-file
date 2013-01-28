@@ -1,7 +1,7 @@
 <?php
 namespace Webit\Parser\FixedWidth\Parser;
 
-class Row {
+class RowDef {
 	/**
 	 * 
 	 * @var string
@@ -24,9 +24,9 @@ class Row {
 	
 	/**
 	 * 
-	 * @param Position $position
+	 * @param PositionDef $position
 	 */
-	public function addPosition(Position $position) {
+	public function addPosition(PositionDef $position) {
 		$this->positions[] = $position;
 	}
 	
@@ -40,7 +40,7 @@ class Row {
 	
 	/**
 	 * @param mixed $key array key or property name
-	 * @return Position|null
+	 * @return PositionDef|null
 	 */
 	public function getPosition($key) {
 		if(isset($this->positions[$key])) {

@@ -2,25 +2,25 @@
 namespace Webit\Parser\FixedWidth\RowConfig;
 
 use Symfony\Component\Yaml\Yaml;
-use Webit\Parser\FixedWidth\Parser\Row;
-use Webit\Parser\FixedWidth\Parser\Position;
+use Webit\Parser\FixedWidth\Parser\RowDef;
+use Webit\Parser\FixedWidth\Parser\PositionDef;
 
 class YamlDriver {
 	/**
 	 * 
 	 * @param string $file
 	 * @throws \InvalidArgumentException
-	 * @return Row
+	 * @return RowDef
 	 */
 	public function buildRow($file) {
 		$arYaml = Yaml::parse($file);
 		$resultType = array_shift(array_keys($arYaml));
 		
-		$row = new Row();
+		$row = new RowDef();
 		$row->setResultType($resultType);
 		if(isset($arYaml[$resultType]['positions'])) {
 			foreach($arYaml[$resultType]['positions'] as $arPosition) {
-				$position = new Position();
+				$position = new PositionDef();
 				
 				if(!isset($arPosition['start']) || !isset($arPosition['end'])) {
 					throw new \InvalidArgumentException('Missing key start od end');

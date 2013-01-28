@@ -10,9 +10,9 @@ class Parser {
 	/**
 	 * 
 	 * @param string $line
-	 * @param Row $row
+	 * @param RowDef $row
 	 */
-	public function parseRow($line, Row $row, $resultType = null) {
+	public function parseRow($line, RowDef $row, $resultType = null) {
 		$arRow = array();
 		foreach ($row->getPositions() as $property => $position) {
 			$arRow[$property] = $this->parsePosition($line, $position);
@@ -29,10 +29,10 @@ class Parser {
 	/**
 	 * 
 	 * @param string $line
-	 * @param Position $position
+	 * @param PositionDef $position
 	 * @return mixed
 	 */
-	public function parsePosition($line, Position $position) {
+	public function parsePosition($line, PositionDef $position) {
 		$start = ($position->getStart() - 1);
 		$length = ($position->getEnd() - $position->getStart() + 1);
 
@@ -45,10 +45,10 @@ class Parser {
 	/**
 	 * 
 	 * @param string $rawValue
-	 * @param Position $position
+	 * @param PositionDef $position
 	 * @return mixed
 	 */
-	private function getValue($rawValue, Position $position) {
+	private function getValue($rawValue, PositionDef $position) {
 		$value = trim($rawValue);
 		if (empty($value)) {
 			return null;

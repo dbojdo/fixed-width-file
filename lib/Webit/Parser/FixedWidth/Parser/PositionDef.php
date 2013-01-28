@@ -1,6 +1,6 @@
 <?php
 namespace Webit\Parser\FixedWidth\Parser;
-class Position {
+class PositionDef {
 	const ALIGN_LEFT = 'left';
 	const ALIGN_RIGHT = 'right';
 
