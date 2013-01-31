@@ -19,7 +19,7 @@ class YamlDriver {
 		$row = new RowDef();
 		$row->setResultType($resultType);
 		if(isset($arYaml[$resultType]['positions'])) {
-			foreach($arYaml[$resultType]['positions'] as $arPosition) {
+			foreach($arYaml[$resultType]['positions'] as $property=>$arPosition) {
 				$position = new PositionDef();
 				
 				if(!isset($arPosition['start']) || !isset($arPosition['end'])) {
@@ -29,14 +29,15 @@ class YamlDriver {
 				$position->setStart($arPosition['start']);
 				$position->setEnd($arPosition['end']);
 				
-				if(isset($arPosition['property'])) {
-					$position->setProperty($arPosition['property']);
+				$property = isset($arPosition['property']) ? $arPosition['property'] : $property;
+				if(!empty($property) && !preg_match('/^\d+$/',$property)) {
+					$position->setProperty($property);
 				}
 				
 				if(isset($arPosition['type'])) {
 					$position->setType($arPosition['type']);
-					if($arPosition['type'] == Position::TYPE_DATE) {
-						$dateFormat = isset($arPosition['dateFormat']) ? $arPosition['dateFormat'] : Position::DEFAULT_DATE_FORMAT;
+					if($arPosition['type'] == PositionDef::TYPE_DATE) {
+						$dateFormat = isset($arPosition['dateFormat']) ? $arPosition['dateFormat'] : PositionDef::DEFAULT_DATE_FORMAT;
 						$position->setDateFormat($dateFormat);
 					}
 				}

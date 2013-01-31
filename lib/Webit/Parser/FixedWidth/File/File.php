@@ -10,7 +10,7 @@ class File extends \SplFileInfo {
 	/**
 	 * @param FileRowInterface $row
 	 */
-	public function addRow(RowInterface $row) {	
+	public function addRow(FileRowInterface $row) {	
 		$this->rows[$row->getRowIndex()] = $row;
 	}
 	

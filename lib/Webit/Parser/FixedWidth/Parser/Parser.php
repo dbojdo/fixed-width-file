@@ -15,7 +15,7 @@ class Parser {
 	public function parseRow($line, RowDef $row, $resultType = null) {
 		$arRow = array();
 		foreach ($row->getPositions() as $property => $position) {
-			$arRow[$property] = $this->parsePosition($line, $position);
+			$arRow[$position->getProperty()] = $this->parsePosition($line, $position);
 		}
 
 		$resultType = $resultType ? $resultType : $row->getResultType();
@@ -55,20 +55,20 @@ class Parser {
 		}
 
 		switch ($position->getType()) {
-		case Position::TYPE_BOOL:
-			return (bool) $rawValue;
-			break;
-		case Position::TYPE_INT:
-			return (int) $rawValue;
-			break;
-		case Position::TYPE_FLOAT:
-			return (float) $rawValue;
-			break;
-		case Position::TYPE_DATE:
-			return \DateTime::createFromFormat($position->getDateFormat(), $rawValue);
-			break;
-		default:
-			return $rawValue;
+			case PositionDef::TYPE_BOOL:
+				return (bool) $rawValue;
+				break;
+			case PositionDef::TYPE_INT:
+				return (int) $rawValue;
+				break;
+			case PositionDef::TYPE_FLOAT:
+				return (float) $rawValue;
+				break;
+			case PositionDef::TYPE_DATE:
+				return \DateTime::createFromFormat($position->getDateFormat(), $rawValue);
+				break;
+			default:
+				return $value;
 		}
 	}
 

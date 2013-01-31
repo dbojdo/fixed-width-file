@@ -8,7 +8,7 @@ class FileRow implements FileRowInterface {
 	 * @param int $rowIndex
 	 */
 	public function __construct($rowIndex) {
-		$this->rowIndex = (int)$rowIndex;
+		$this->setRowIndex($rowIndex);
 	}
 	
 	/**
@@ -17,5 +17,9 @@ class FileRow implements FileRowInterface {
 	 */
 	public function getRowIndex() {
 		return $this->rowIndex;
+	}
+	
+	public function setRowIndex($rowIndex) {
+		$this->rowIndex = (int)$rowIndex;
 	}
 }
