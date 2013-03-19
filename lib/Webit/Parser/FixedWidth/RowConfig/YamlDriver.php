@@ -14,7 +14,9 @@ class YamlDriver {
 	 */
 	public function buildRow($file) {
 		$arYaml = Yaml::parse($file);
-		$resultType = array_shift(array_keys($arYaml));
+		
+		$arKeys = array_keys($arYaml);
+		$resultType = array_shift($arKeys);
 		
 		$row = new RowDef();
 		$row->setResultType($resultType);
