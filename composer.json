@@ -4,7 +4,7 @@
 	"description": "Web-IT fixed width file parser",
 	"keywords": ["web-it","fixed width","fixed position"],
 	"homepage": "http://www.web-it.eu",
-	"license": "Web-IT",
+	"license": "MIT",
 	"authors": [
 		{
 			"name": "Web-IT",
